@@ -1,0 +1,20 @@
+<li *ngIf="choosenItems.length>0" class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    id="navbarDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Seçilenler
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li *ngFor="let choosenItem of choosenItems">
+      <a class="dropdown-item">
+        <span (click)="removeFromChoosen(choosenItem.car)" class="badge bg-secondary">sil</span>{{ choosenItem.car.brandName }}<span class="badge bg-secondary">{{choosenItem.quantity}}</span>
+      </a>
+    </li>
+    <li><hr class="dropdown-divider" /></li>
+    <li><a class="dropdown-item">Seçilen arabalara git</a></li>
+  </ul>
+</li>
