@@ -5,20 +5,33 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-
-<table *ngIf="dataLoaded == true" class = "table">
+<div class="mb-3">
+  <label for="filterText2" class="form-label">Marka ara</label>
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="brandFilterText"
+    id="filterText2"
+    placeholder="arama ifadesi giriniz"
+  />
+</div>
+<div *ngIf="brandFilterText" class="alert alert-success">
+  {{ brandFilterText }} aradınız
+</div>
+<table *ngIf="dataLoaded == true" class="table">
   <thead>
     <tr>
       <th>Markalar</th>
     </tr>
   </thead>
-  <tr (click) = "cleanCurrentBrand()" routerLink = "/cars">
-  Tüm Arabalar </tr>
-  <tr 
-  *ngFor = "let brand of brands"
-  (click) = "setCurrentBrand(brand)"
-  routerLink = "/cars/brands/{{brand.brandId}}">
-    <td>{{brand.brandName}}</td>
+  <tr (click)="cleanCurrentBrand()" routerLink="/cars">
+    Tüm Arabalar
   </tr>
-
+  <tr
+    *ngFor="let brand of brands | brandFilterPipe: brandFilterText"
+    (click)="setCurrentBrand(brand)"
+    routerLink="/cars/brands/{{ brand.brandId }}"
+  >
+    <td>{{ brand.brandName }}</td>
+  </tr>
 </table>

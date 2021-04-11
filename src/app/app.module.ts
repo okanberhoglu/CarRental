@@ -18,6 +18,8 @@ import { RentalFilterPipePipe } from './pipes/rental-filter-pipe.pipe';
 
 import{ToastrModule} from "ngx-toastr";
 import { ChoosenSummaryComponent } from './components/choosen-summary/choosen-summary.component';
+import { BrandFilterPipePipe } from './pipes/brand-filter-pipe.pipe';
+import { ColorFilterPipePipe } from './pipes/color-filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { ChoosenSummaryComponent } from './components/choosen-summary/choosen-su
     FilterPipePipe,
     RentalFilterPipePipe,
     ChoosenSummaryComponent,
+    BrandFilterPipePipe,
+    ColorFilterPipePipe,
   ],
   imports: [
     BrowserModule, 

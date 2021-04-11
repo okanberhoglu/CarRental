@@ -6,13 +6,13 @@
     <input
       type="text"
       class="form-control"
-      [(ngModel)]="filterText"
+      [(ngModel)]="rentalFilterText"
       id="filterText"
       placeholder="arama ifadesi giriniz"
     />
   </div>
-<div *ngIf= "filterText" class ="alert alert-success">
-    {{filterText}} aradınız
+<div *ngIf= "rentalFilterText" class ="alert alert-success">
+    {{rentalFilterText}} aradınız
     </div>
 <table *ngIf="dataLoaded == true" class="table">
     <thead>
@@ -27,7 +27,7 @@
             <th>Teslim Tarihi</th>
         </tr>
     </thead>
-    <tr *ngFor="let rental of rentals | rentalFilterPipe:filterText">
+    <tr *ngFor="let rental of rentals | rentalFilterPipe:rentalFilterText">
         <td>{{rental.firstName}}</td>
         <td>{{rental.lastName}}</td>
         <td>{{rental.companyName}}</td>
