@@ -1,29 +1,36 @@
-<div *ngIf="dataLoaded == false" class="spinner-grow text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-  <div class="mb-3">
-    <label for="filterText3" class="form-label">Renk ara</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="colorFilterText"
-      id="filterText3"
-      placeholder="arama ifadesi giriniz"
-    />
-  </div>
-  <div *ngIf= "colorFilterText" class ="alert alert-success">
-    {{colorFilterText}} aradınız
-    </div>
-<table *ngIf="dataLoaded == true" class = "table">
-    <thead>
-        <tr>
-            <th>Renkler</th>
-        </tr>
-    </thead>
-    <tr
-    (click) = "setCurrentColor(color)"
-    routerLink="/cars/colors/{{ color.colorId }}"
-    *ngFor = "let color of colors | colorFilterPipe:colorFilterText">
-        <td>{{color.colorName}}</td>
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-grow text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="mb-3">
+  <label for="filterText3" class="form-label">Renk ara</label>
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="colorFilterText"
+    id="filterText3"
+    placeholder="arama ifadesi giriniz"
+  />
+</div>
+<div *ngIf="colorFilterText" class="alert alert-success">
+  {{ colorFilterText }} aradınız
+</div>
+<table *ngIf="dataLoaded == true" class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Renkler</th>
     </tr>
+  </thead>
+  <tr
+    (click)="setCurrentColor(color)"
+    routerLink="/cars/colors/{{ color.colorId }}"
+    *ngFor="let color of colors | colorFilterPipe: colorFilterText"
+  >
+    <td>{{ color.colorId }}</td>
+    <td>{{ color.colorName }}</td>
+  </tr>
 </table>

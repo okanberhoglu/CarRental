@@ -21,6 +21,7 @@
 <table *ngIf="dataLoaded == true" class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Markalar</th>
     </tr>
   </thead>
@@ -32,6 +33,7 @@
     (click)="setCurrentBrand(brand)"
     routerLink="/cars/brands/{{ brand.brandId }}"
   >
+    <td>{{ brand.brandId }}</td>
     <td>{{ brand.brandName }}</td>
   </tr>
 </table>
