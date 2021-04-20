@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,11 +16,13 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { RentalFilterPipePipe } from './pipes/rental-filter-pipe.pipe';
 
-import{ToastrModule} from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 import { ChoosenSummaryComponent } from './components/choosen-summary/choosen-summary.component';
 import { BrandFilterPipePipe } from './pipes/brand-filter-pipe.pipe';
 import { ColorFilterPipePipe } from './pipes/color-filter-pipe.pipe';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,19 +40,22 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     BrandFilterPipePipe,
     ColorFilterPipePipe,
     CarAddComponent,
+    LoginComponent,
   ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
-    HttpClientModule, 
-    FormsModule, 
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right"
+      positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
